@@ -47,4 +47,4 @@ FR_Button = 31;    //set button nr for SSS , -1 is off
 
 U can set button number to display hour minutest etc buttons
 
-set to -1 to not display
+set -1 to nodisplay button
