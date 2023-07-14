@@ -12,7 +12,7 @@ midi_in = 'MTC';     //set correct midi in device name
 HH_Button = 28;     //set button nr for HH , -1 is off
 MM_Button = 29;     //set button nr for MM , -1 is off
 SS_Button = 30;     //set button nr for SS , -1 is off
-FR_Button = 31;    //set button nr for SSS , -1 is off - not finishet
+FR_Button = 31;    //set button nr for SSS , -1 is off
 
 
 var array = [0, 0, 0, 0, 0, 0, 0, 0];
