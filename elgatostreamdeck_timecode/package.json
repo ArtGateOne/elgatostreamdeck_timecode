@@ -1,0 +1,23 @@
+{
+  "name": "elgatostreamdeck_timecode",
+  "version": "1.0.0",
+  "description": "none",
+  "main": "timecode.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "ArtGateOne",
+  "license": "ISC",
+  "dependencies": {
+    "@elgato-stream-deck/node": "^5.7.3",
+    "easymidi": "^3.0.1",
+    "sharp": "^0.32.2"
+  }
+}
