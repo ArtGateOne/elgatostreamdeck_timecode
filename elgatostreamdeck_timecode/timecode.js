@@ -1,3 +1,4 @@
+//MTC timecode display on Elgato Stream Deck by ArtGateOne v1.0.1
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
@@ -17,7 +18,9 @@ FR_Button = 31;    //set button nr for SSS , -1 is off
 
 var array = [0, 0, 0, 0, 0, 0, 0, 0];
 var array_mem = [-1, -1, -1, -1, -1, -1, -1, -1];
+var fontColor = "#333";
 display_timecode();
+array_mem = [-1, -1, -1, -1, -1, -1, -1, -1];
 
 //display all midi devices
 console.log("Midi IN");
@@ -50,14 +53,16 @@ input.on('mtc', function (msg) {
   array[msg.type] = msg.value;
 
   if (msg.type == 7) {
+    fontColor = "#5f0";
     display_timecode();
-    //console.log((array[7]*16 + array[6]), (array[5]*16 + array[4]) ,(array[3]*16 + array[2]), (array[1]*16 + array[0]));
   }
 });
 
 
 input.on('sysex', function (msg) {
   //console.log(msg.bytes);
+  fontColor = "#666";
+  
   if (msg.bytes[0] == 240 && msg.bytes[1] == 127 && msg.bytes[2] == 127 && msg.bytes[3] == 1 && msg.bytes[4] == 1 && msg.bytes[9] == 247) {
 
     if (FR_Button != -1) {
@@ -75,8 +80,8 @@ input.on('sysex', function (msg) {
     if (HH_Button != -1) {
       generate_pic(HH_Button, msg.bytes[5]);
     }
-
   }
+  array_mem = [-1, -1, -1, -1, -1, -1, -1, -1];
 });
 
 
@@ -113,9 +118,7 @@ function display_timecode() {
       generate_pic((HH_Button), (array[7] * 16 + array[6]));
     }
   }
-
 }
-
 
 async function generate_pic(button, text) {
   try {
@@ -139,7 +142,7 @@ async function generate_pic(button, text) {
                   font-size="${0.8 * height}"
                   x="${width / 2}"
                   y="${0.8 * height}"
-                  fill="#5f0"
+                  fill="${fontColor}"
                   text-anchor="middle"
                 >${text.toString().padStart(2, '0')}</text>
               </svg>`
